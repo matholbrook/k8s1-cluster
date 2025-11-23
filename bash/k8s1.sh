@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -a cluster=(k8s1-vm1 k8s1-vm2 k8s1-vm3)
+declare -a cluster=(k8s1-vm1 k8s1-vm2 k8s1-vm3 k8s1-vm4)
 
 case "$1" in
     list)
