@@ -1,4 +1,4 @@
-# How To
+)# How To
 
 ## Tear It Down
 
@@ -83,30 +83,3 @@ watch kubectl -n kube-system get po
 kubectl create -f ../../../k8s/metrics-server/components.yaml
 watch kubectl -n kube-system get po
 ```
-
-
-
-
-
-
-sum(rate(cpu_usage_seconds_total{namespace=~"$namespace", image!="", cluster="$cluster"}[$__rate_interval])) / sum(machine_cpu_cores{cluster="$cluster"})
-
-sum(rate(cpu_usage_seconds_total{namespace=~"$namespace", image!="", cluster="$cluster"})) / sum(machine_cpu_cores{cluster="$cluster"})
-
-sum(rate(container_cpu_usage_seconds_total{namespace=~"dev01", image!=""}[1d]))
-
-
-
-sum(container_memory_working_set_bytes{namespace=~"$namespace", image!="", cluster="$cluster"}) / sum(machine_memory_bytes{cluster="$cluster"})
-
-
-
-
-
-
-count(kube_deployment_created) by (namespace) unless on(namespace) kube_namespace_created{namespace=~"kube-.*"}
-    
-count(kube_deployment_created) by (namespace) unless on(namespace) kube_namespace_created{namespace=~"kube-.*"}
-
-count(count(kube_deployment_created) by (namespace) unless on(namespace) kube_namespace_created{namespace=~"kube-.*"} or on(namespace) kube_namespace_created{namespace="default"})
-
