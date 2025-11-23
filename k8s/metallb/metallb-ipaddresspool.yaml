@@ -1,7 +1,7 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: first-pool
+  name: k8s1-pool
   namespace: metallb-system
 spec:
   addresses:
@@ -10,9 +10,9 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
-  name: example
+  name: k8s1
   namespace: metallb-system
 spec:
   ipAddressPools:
-  - first-pool
+  - k8s1-pool
 
