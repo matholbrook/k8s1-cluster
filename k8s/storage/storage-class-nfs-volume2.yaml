@@ -1,0 +1,18 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  name: nfs-vol2
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 192.168.1.29
+  share: /nfs-share/volume2
+#  subDir: /foo
+allowVolumeExpansion: true
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+mountOptions:
+  - nfsvers=4
+  - nolock

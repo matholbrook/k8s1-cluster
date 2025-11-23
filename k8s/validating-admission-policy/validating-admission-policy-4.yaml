@@ -1,0 +1,29 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: "namespace-policy"
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+    - apiGroups:   ["apps"]
+      apiVersions: ["v1"]
+      operations:  ["CREATE", "UPDATE"]
+      resources:   ["deployments"]
+  validations:
+    - expression: "has(object.metadata.namespace) && object.metadata.namespace in ['dev01', 'uat01', 'prd01']"
+      message: "deployment should have a namespace equal to dev01, uat01 or prd01"
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  name: "namespace-policy-binding"
+spec:
+  policyName: "namespace-policy"
+  validationActions: [Deny]
+  matchResources:
+    namespaceSelector:
+      matchExpressions:
+      - key: "env"
+        operator: NotIn
+        values: [dev01, uat01, prd01]

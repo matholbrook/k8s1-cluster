@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: validation-config
+  namespace: default
+data:
+  maxReplicas: "6"
