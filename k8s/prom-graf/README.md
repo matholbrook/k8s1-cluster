@@ -2,13 +2,8 @@
 
 ## Set up Storage First!
 
-```bash
-kubectl apply -f storage-class.yaml
-kubectl apply -f prometheus-pv1.yaml
-kubectl apply -f prometheus-pv2.yaml
-```
-If you don't do this first then there are several pods that will not start.
-
+We should be using the NFS provider locally.
+The PVC's required for Prometheus will autocreate.
 
 ## Helm Work
 
